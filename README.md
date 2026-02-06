@@ -25,7 +25,7 @@ RegisterNumber:  212225040098
 
 import pandas as pd
 import numpy as np
-from sklearn.metrics import confusion_matrix
+from sklearn.metrics import confusion_matrix, accuracy_score, precision_score, recall_score
 
 # Load dataset
 data = pd.read_csv("C:/Users/acer/Downloads/Placement_Data (1).csv")
@@ -87,16 +87,36 @@ if result >= 0.5:
 else:
     print("\nPlacement Status: NOT PLACED")
 
-# ---------------- CONFUSION MATRIX ----------------
+# ---------------- MODEL EVALUATION ----------------
 y_pred = sigmoid(np.dot(X, weights)) >= 0.5
-cm = confusion_matrix(y, y_pred)
 
+# Confusion Matrix
+cm = confusion_matrix(y, y_pred)
 print("\nConfusion Matrix:")
 print(cm)
+
+# Accuracy
+accuracy = accuracy_score(y, y_pred)
+print("\nAccuracy:", accuracy)
+
+# Precision
+precision = precision_score(y, y_pred)
+print("Precision:", precision)
+
+# Sensitivity (Recall)
+sensitivity = recall_score(y, y_pred)
+print("Sensitivity (Recall):", sensitivity)
+
+# Specificity
+TN, FP, FN, TP = cm.ravel()
+specificity = TN / (TN + FP)
+print("Specificity:", specificity)
+
 ```
 
 ## Output:
-<img width="547" height="306" alt="image" src="https://github.com/user-attachments/assets/b9a02421-dd1a-4c50-9593-44687494304d" />
+<img width="765" height="402" alt="image" src="https://github.com/user-attachments/assets/6244e231-130c-4604-9040-b436057c15a1" />
+
 
 
 
